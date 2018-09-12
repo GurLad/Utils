@@ -18,6 +18,20 @@ namespace Utils
     public class FilesController
     {
         public string Path { get; set; } = Directory.GetCurrentDirectory();
+        public FilesController() { }
+        public FilesController(string BasePath)
+        {
+            CreateDirectory(BasePath, true);
+        }
+        public bool CheckFileExist(string Name)
+        {
+            return File.Exists(Path + @"\" + Name);
+        }
+        public void CreateDirectory(string Name, bool NavigateThere = false)
+        {
+            Directory.CreateDirectory(Path + @"\" + Name);
+            if (NavigateThere) Path += @"\" + Name;
+        }
         public void SaveFile(string Name, string Content)
         {
             // MessageBox.Show(Path + @"\" + Name); //Debug
@@ -27,10 +41,10 @@ namespace Utils
         {
             if (MessageBox.Show("Are you sure you want to delete this?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes) File.Delete(Path + @"\" + Name);
         }
-        public string LoadFile(string Name)
+        public string LoadFile(string Name, string DefultValue = "")
         {
             // MessageBox.Show(Path + @"\" + Name); // Debug
-            if (!File.Exists(Path + @"\" + Name)) SaveFile(Name, "");
+            if (!File.Exists(Path + @"\" + Name)) SaveFile(Name, DefultValue);
             return File.ReadAllText(Path + @"\" + Name);
         }
         public void SaveImage(string Name, Image TheImage, string Format = ".png")
