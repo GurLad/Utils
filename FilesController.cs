@@ -12,7 +12,7 @@ namespace Utils
      * This class helps using files without having to worry about a path and missing files.
      * Feel free to use it.
      * 
-     * By Gur Ladizhinsky, 28.06.2018
+     * By Gur Ladizhinsky, 01.10.2018
      */
 
     public class FilesController
@@ -37,9 +37,10 @@ namespace Utils
             // MessageBox.Show(Path + @"\" + Name); //Debug
             File.WriteAllText(Path + @"\" + Name, Content);
         }
-        public void DeleteFile(string Name)
+        public void DeleteFile(string Name, bool ConfirmDialog = true)
         {
-            if (MessageBox.Show("Are you sure you want to delete this?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes) File.Delete(Path + @"\" + Name);
+            if (!ConfirmDialog) File.Delete(Path + @"\" + Name);
+            else if (MessageBox.Show("Are you sure you want to delete this?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes) File.Delete(Path + @"\" + Name);
         }
         public string LoadFile(string Name, string DefultValue = "")
         {
