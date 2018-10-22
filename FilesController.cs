@@ -18,9 +18,17 @@ namespace Utils
     public class FilesController
     {
         public string Path { get; set; } = Directory.GetCurrentDirectory();
-        public FilesController() { }
+        public FilesController()
+        {
+            //Fixes bugs when launching from start
+            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+            Path = Environment.CurrentDirectory;
+        }
         public FilesController(string BasePath)
         {
+            //Fixes bugs when launching from start
+            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+            Path = Environment.CurrentDirectory;
             CreateDirectory(BasePath, true);
         }
         public bool CheckFileExist(string Name)
