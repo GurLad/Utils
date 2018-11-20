@@ -56,6 +56,10 @@ namespace Utils
             if (!File.Exists(Path + @"\" + Name)) SaveFile(Name, DefultValue);
             return File.ReadAllText(Path + @"\" + Name);
         }
+        public void AppendFile(string Name, string Content, string DefultValue = "")
+        {
+            SaveFile(Name, LoadFile(Name, DefultValue) + Content);
+        }
         public void SaveImage(string Name, Image TheImage, string Format = ".png")
         {
             if (!Directory.Exists(Path + @"\Images")) Directory.CreateDirectory(Path + @"\Images");
