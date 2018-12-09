@@ -98,7 +98,7 @@ namespace Utils
                 string[] Files = Directory.GetFiles(Path + AdditionalPath);
                 for (int i = 0; i < Files.Length; i++)
                 {
-                    string[] Temp = Files[i].Split(@"\");
+                    string[] Temp = Files[i].Split(@"\"[0]);
                     Files[i] = Temp[Temp.Length - 1];
                 }
                 return Files;
