@@ -12,7 +12,7 @@ namespace Utils
      * This class helps using files without having to worry about a path and missing files.
      * Feel free to use it.
      * 
-     * By Gur Ladizhinsky, 01.10.2018
+     * By Gur Ladizhinsky, 09.12.2018
      */
 
     public class FilesController
@@ -89,10 +89,20 @@ namespace Utils
             }
             catch { return null; }
         }
-        public string[] AllFiles(string AdditionalPath = "")
+        public string[] AllFiles(string AdditionalPath = "", bool IncludePath = true)
         {
             if (!Directory.Exists(Path + AdditionalPath)) Directory.CreateDirectory(Path + AdditionalPath);
-            return Directory.GetFiles(Path + AdditionalPath);
+            if (IncludePath) return Directory.GetFiles(Path + AdditionalPath);
+            else
+            {
+                string[] Files = Directory.GetFiles(Path + AdditionalPath);
+                for (int i = 0; i < Files.Length; i++)
+                {
+                    string[] Temp = Files[i].Split(@"\");
+                    Files[i] = Temp[Temp.Length - 1];
+                }
+                return Files;
+            }
         }
     }
 }
