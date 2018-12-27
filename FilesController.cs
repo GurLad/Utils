@@ -40,6 +40,11 @@ namespace Utils
             Directory.CreateDirectory(Path + @"\" + Name);
             if (NavigateThere) Path += @"\" + Name;
         }
+        public void ResetPath()
+        {
+            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+            Path = Environment.CurrentDirectory;
+        }
         public void SaveFile(string Name, string Content)
         {
             // MessageBox.Show(Path + @"\" + Name); //Debug
