@@ -11,7 +11,7 @@ namespace Utils
      * This class helps using files without having to worry about a path and missing files.
      * Feel free to use it.
      * 
-     * Version 2.0, by Gur Ladizhinsky, 06.04.2018
+     * Version 2.0, by Gur Ladizhinsky, 06.04.2019
      */
 
     public class FilesController
