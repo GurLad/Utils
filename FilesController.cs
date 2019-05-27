@@ -66,7 +66,7 @@ namespace Utils
         /// <param name="Name">The name of the file.</param>
         /// <param name="Content">The content of the file.</param>
         /// <param name="Format">The format of the file (a string, ex. ".txt").</param>
-        public void SaveFile(string Name, string Content, string Format = "")
+        public void SaveFile(string Name, string Content, string Format = null)
         {
             if (Format == null)
             {
@@ -79,7 +79,7 @@ namespace Utils
         /// </summary>
         /// <param name="Name">The name of the file to delete.</param>
         /// <param name="Format">The format of the file (a string, ex. ".txt").</param>
-        public void DeleteFile(string Name, string Format = "")
+        public void DeleteFile(string Name, string Format = null)
         {
             if (Format == null)
             {
@@ -94,7 +94,7 @@ namespace Utils
         /// <param name="DefultValue">If the file doesn't exist, create a new file with this value.</param>
         /// <param name="Format">The format of the file (a string, ex. ".txt").</param>
         /// <returns></returns>
-        public string LoadFile(string Name, string DefultValue = "", string Format = "")
+        public string LoadFile(string Name, string DefultValue = "", string Format = null)
         {
             if (Format == null)
             {
