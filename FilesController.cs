@@ -100,7 +100,7 @@ namespace Utils
             {
                 Format = DefultFileFormat;
             }
-            if (!CheckFileExist(Name)) SaveFile(Name, DefultValue);
+            if (!CheckFileExist(Name)) SaveFile(Name, DefultValue, Format);
             return File.ReadAllText(Path + Seperator + Name + Format);
         }
         /// <summary>
