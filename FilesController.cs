@@ -100,7 +100,7 @@ namespace Utils
             {
                 Format = DefultFileFormat;
             }
-            if (!CheckFileExist(Name)) SaveFile(Name, DefultValue, Format);
+            if (!CheckFileExist(Name + Format)) SaveFile(Name, DefultValue, Format);
             return File.ReadAllText(Path + Seperator + Name + Format);
         }
         /// <summary>
@@ -189,7 +189,7 @@ namespace Utils
                 {
                     string[] Temp = Files[i].Split(@"\"[0]);
                     Files[i] = Temp[Temp.Length - 1];
-                    if (!IncludeFormat)
+                    if (!IncludeFormat && Files[i].LastIndexOf('.') >= 0)
                     {
                         Files[i] = Files[i].Substring(0, Files[i].LastIndexOf('.'));
                     }
