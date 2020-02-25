@@ -20,6 +20,7 @@ namespace Utils
         public string DefultFileFormat { get; set; } = ".txt";
         public string DefultImageFileFormat { get; set; } = ".png";
         public char Seperator { get; set; } = @"\"[0]; //Mainly for other OS's.
+        public Encoding TextEncoding = Encoding.Default;
         public FilesController()
         {
             //Fixes bugs when launching from start
@@ -72,7 +73,7 @@ namespace Utils
             {
                 Format = DefultFileFormat;
             }
-            File.WriteAllText(Path + Seperator + Name + Format, Content);
+            File.WriteAllText(Path + Seperator + Name + Format, Content, TextEncoding);
         }
         /// <summary>
         /// Deletes a file.
@@ -101,7 +102,7 @@ namespace Utils
                 Format = DefultFileFormat;
             }
             if (!CheckFileExist(Name + Format)) SaveFile(Name, DefultValue, Format);
-            return File.ReadAllText(Path + Seperator + Name + Format);
+            return File.ReadAllText(Path + Seperator + Name + Format, TextEncoding);
         }
         /// <summary>
         /// Appeands data to a text file (basically a combination between save and load file).
