@@ -198,5 +198,26 @@ namespace Utils
                 return Files;
             }
         }
+        /// <summary>
+        /// Returns all directories in Path ( + AdditionalPath).
+        /// </summary>
+        /// <param name="IncludePath">If true, all files will include their full path (ex. "C:\Folder\Name.png" vs. "Name.png").</param>
+        /// <param name="AdditionalPath">Check in this path inside Path (ex. Path is "C:\", addition is "Folder\", will return all files in "C:\Folder\"). This is unsafe, and you really shouldn't use it.</param>
+        /// <returns></returns>
+        public string[] AllDirectories(bool IncludePath = false, string AdditionalPath = "")
+        {
+            if (!Directory.Exists(Path + AdditionalPath)) Directory.CreateDirectory(Path + AdditionalPath);
+            if (IncludePath) return Directory.GetDirectories(Path + AdditionalPath);
+            else
+            {
+                string[] Files = Directory.GetDirectories(Path + AdditionalPath);
+                for (int i = 0; i < Files.Length; i++)
+                {
+                    string[] Temp = Files[i].Split(@"\"[0]);
+                    Files[i] = Temp[Temp.Length - 1];
+                }
+                return Files;
+            }
+        }
     }
 }
