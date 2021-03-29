@@ -5,13 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Drawing;
+
 namespace Utils
 {
     /*
      * This class helps using files without having to worry about a path and missing files.
      * Feel free to use it.
      * 
-     * Version 2.0, by Gur Ladizhinsky, 06.04.2019
+     * This code is pretty old by now, but still my go-to file system, mostly out of habit.
+     * 
+     * Version 2.1, by Gur Ladizhinsky, 29.03.2021
      */
 
     public class FilesController
@@ -38,10 +41,11 @@ namespace Utils
         /// Checks whether a file already exists.
         /// </summary>
         /// <param name="Name">The name of the file to check.</param>
+        /// <param name="Format">The format of the file (defaults to "", not default format).</param>
         /// <returns>True if it exists, false otherwise.</returns>
-        public bool CheckFileExist(string Name)
+        public bool CheckFileExist(string Name, string Format = null)
         {
-            return File.Exists(Path + Seperator + Name);
+            return File.Exists(Path + Seperator + Name + (Format ?? ""));
         }
         /// <summary>
         /// Creates a new directory, and modifies the path to enter it if NavigateThere is true.
@@ -52,6 +56,22 @@ namespace Utils
         {
             Directory.CreateDirectory(Path + Seperator + Name);
             if (NavigateThere) Path += Seperator + Name;
+        }
+        /// <summary>
+        /// Checks whether a directory already exists.
+        /// </summary>
+        /// <param name="Name">The name of the directory to check.</param>
+        public bool CheckDirectoryExists(string Name)
+        {
+            return Directory.Exists(Path + Seperator + Name);
+        }
+        /// <summary>
+        /// Deletes a directory.
+        /// </summary>
+        /// <param name="Name">The name of the directory to delete.</param>
+        public void DeleteDirectory(string Name)
+        {
+            Directory.Delete(Path + Seperator + Name);
         }
         /// <summary>
         /// Resets Path to its defult value.
